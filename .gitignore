@@ -1,3 +1,6 @@
+#IntelliJ
+.idea
+
 # Logs
 logs
 *.log
@@ -35,3 +38,18 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+#node_modules (already defined
+
+# testing
+#coverage (already defined)
+
+# production
+build
+
+# misc
+.DS_Store
+.env
+npm-debug.log
