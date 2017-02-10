@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:7.5.0
 MAINTAINER Yanick Nedderhoff <yanicknedderhoff@gmail.com>
 
 # Set the timezone.
