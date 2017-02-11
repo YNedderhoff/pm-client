@@ -6,10 +6,10 @@ import _ from 'lodash';
 import JsonTable from 'react-json-table';
 
 class App extends Component {
-
   constructor() {
       super();
       this.state = {
+          text: "0 °C",
           row: false,
           cell: false,
           sort: false
@@ -19,8 +19,11 @@ class App extends Component {
   componentWillMount(){
     var url = "https://feinstaubdb-de92.restdb.io/rest/pm-and-weather-data?h={\"$orderby\":{\"values_retrieved_at\":-1}}&format=.json&apikey=5895ac0e64c380c04d1ed70b";
     Request.get(url).then((response) => {
+      var parsedResponse = JSON.parse(response.text)
       this.setState({
-        sensors: response.body
+        sensors: parsedResponse,
+        latestTemperature: parsedResponse[0].temperature,
+        latestTime: parsedResponse[0].values_retrieved_at
       })
     })
   }
@@ -84,17 +87,22 @@ class App extends Component {
 
     return (
       <div>
-          <button onClick={ (e) => {this.setState({sort: "name"})}}>SortByName</button>
-          <button onClick={ (e) => {this.setState({sort: "temperature"})}}>SortByTemperature</button>
-          <button onClick={ (e) => {this.setState({sort: "humidity"})}}>SortByHumidity</button>
-          <button onClick={ (e) => {this.setState({sort: "values_measured_at"})}}>SortByDate</button>
-          <JsonTable
-          rows={sensor_values}
-          settings={ this.getSettings() }
-          onClickCell={ this.onClickCell }
-          onClickHeader={ this.onClickHeader }
-          onClickRow={ this.onClickRow } />
+          <div>
+            Latest temperature: <b>{this.state.latestTemperature} °C</b> ({this.state.latestTime})
           </div>
+          <div>
+            <button onClick={ (e) => {this.setState({sort: "name"})}}>SortByName</button>
+            <button onClick={ (e) => {this.setState({sort: "temperature"})}}>SortByTemperature</button>
+            <button onClick={ (e) => {this.setState({sort: "humidity"})}}>SortByHumidity</button>
+            <button onClick={ (e) => {this.setState({sort: "values_measured_at"})}}>SortByDate</button>
+            <JsonTable
+            rows={sensor_values}
+            settings={ this.getSettings() }
+            onClickCell={ this.onClickCell }
+            onClickHeader={ this.onClickHeader }
+            onClickRow={ this.onClickRow } />
+          </div>
+        </div>
     );
   }
 }
