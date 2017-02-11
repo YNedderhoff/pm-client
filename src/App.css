@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
+  animation: App-logo-spin infinite 1ms linear;
   height: 80px;
 }
 
@@ -18,7 +18,33 @@
   font-size: large;
 }
 
+table {
+  border-spacing: 0;
+}
+
+td {
+  padding: 2px 5px;
+}
+
+.jsonOdd {
+  background: #eee;
+}
+
+.rowSelected {
+  background: #ffe;
+}
+.cellSelected {
+  background: #eef;
+}
+.headerSelected {
+  color: blue;
+}
+
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
 }
