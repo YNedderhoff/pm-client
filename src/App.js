@@ -69,7 +69,6 @@ class App extends Component {
 
     _.map(this.state.sensors, (s) => {
       var sensor = {
-        name: s.sensor,
         temperature: s.temperature + " °C",
         humidity:s.humidity,
         values_measured_at:s.values_retrieved_at
@@ -91,7 +90,6 @@ class App extends Component {
             Latest temperature: <b>{this.state.latestTemperature} °C</b> ({this.state.latestTime})
           </div>
           <div>
-            <button onClick={ (e) => {this.setState({sort: "name"})}}>SortByName</button>
             <button onClick={ (e) => {this.setState({sort: "temperature"})}}>SortByTemperature</button>
             <button onClick={ (e) => {this.setState({sort: "humidity"})}}>SortByHumidity</button>
             <button onClick={ (e) => {this.setState({sort: "values_measured_at"})}}>SortByDate</button>
